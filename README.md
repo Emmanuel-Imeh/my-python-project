@@ -38,19 +38,19 @@ print("Hello from my Dockerized Python app! 🚀")
 
 
 Dockerfile
-
-## Use official Python base image
+```yml
+# Use official Python base image
 FROM python:3.10-slim
 
-## Set working directory
+# Set working directory
 WORKDIR /app
 
-## Copy application code
+# Copy application code
 COPY app.py .
 
-## Command to run the app
+# Command to run the app
 CMD ["python", "app.py"]
-
+```
 
 Test locally:
 
