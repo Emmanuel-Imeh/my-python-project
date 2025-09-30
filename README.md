@@ -165,3 +165,78 @@ You now have:
 ✅ Hosted on GitHub.  
 ✅ Automated builds to Docker Hub.  
 ✅ Multi-arch support (works on Intel & ARM)   
+
+
+
+# 🚀 FastAPI on Kubernetes
+
+This project demonstrates deploying a simple FastAPI app inside a local Kubernetes cluster (via Docker Desktop).
+
+## 📂 Project Structure
+```
+.
+├── app.py             # FastAPI application
+├── Dockerfile         # Container definition
+├── deployment.yaml    # Kubernetes Deployment
+└── service.yaml       # Kubernetes Service  
+```
+
+# 🛠 Requirements
+
+- Docker Desktop
+ with Kubernetes enabled
+
+- kubectl CLI installed
+
+- Python 3.10+
+
+## 🔧 Setup & Run
+1. Clone and Build
+git clone <your-repo>
+cd <your-repo>
+docker build -t myfastapi-app:latest .
+
+2. Apply Kubernetes Manifests
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+
+3. Port Forward the Service
+kubectl port-forward svc/myapp-service 8000:8000
+
+4. Access the App
+
+API Root: http://localhost:8000/
+
+API Docs: http://localhost:8000/docs
+
+## ⚡️ Useful Commands
+Check Resources  
+```sh
+kubectl get pods  
+kubectl get svc 
+``` 
+
+##Port forward locally
+
+Run:
+
+```sh
+kubectl port-forward svc/myapp-service 8000:8000
+```
+This binds your local http://localhost:8000/
+ directly to the FastAPI app running inside the cluster 🎉.
+
+Scale Deployment
+```sh
+kubectl scale deployment myapp-deployment --replicas=3
+```
+
+Update Image (Rolling Update)
+```sh
+kubectl set image deployment/myapp-deployment myapp=<dockerhub-user>/<image>:v2
+```
+
+✅ Output Example
+{"message": "Updated build!"}
+
+
