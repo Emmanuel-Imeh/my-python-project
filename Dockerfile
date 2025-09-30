@@ -1,12 +1,18 @@
 # Base image
 FROM python:3.10-slim
 
-# Set working directory inside container
+# Set working directory
 WORKDIR /app
 
-# Copy everything into the container
+# Copy files
 COPY . /app
 
-# Command to run when container starts
+# Install FastAPI and Uvicorn
+RUN pip install fastapi uvicorn
+
+# Expose port
+EXPOSE 8000
+
+# Run the FastAPI app
 CMD ["python", "app.py"]
 
